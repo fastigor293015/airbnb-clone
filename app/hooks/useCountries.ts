@@ -10,7 +10,6 @@ const formattedCountries = countries.map((country) => ({
 }));
 
 const useCountries = () => {
-  console.log(countries[0].flag)
   const getAll = () => formattedCountries;
 
   const getByValue = (value: string) => {
