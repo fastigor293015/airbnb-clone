@@ -70,8 +70,6 @@ const Modal: React.FC<ModalProps> = ({
     <>
       <div
         onClick={e => {
-          console.log(e.target);
-          console.log(e.currentTarget);
           if (e.target === e.currentTarget) {
             handleClose();
           }
