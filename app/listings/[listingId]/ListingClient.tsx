@@ -5,14 +5,13 @@ import { toast } from "react-hot-toast";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
-import { Reservation } from "@prisma/client";
 
 import useLoginModal from "@/app/hooks/useLoginModal";
 import Container from "@/app/components/Container";
 import ListingHead from "@/app/components/listings/ListingHead";
 import ListingInfo from "@/app/components/listings/ListingInfo";
 import { categories } from "@/app/components/navbar/Categories";
-import { SafeListing, SafeUser } from "@/app/types";
+import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 import ListingReservation from "@/app/components/listings/ListingReservation";
 import { Range } from "react-date-range";
 
@@ -23,7 +22,7 @@ const initialDateRange = {
 }
 
 interface ListingClientProps {
-  reservations?: Reservation[];
+  reservations?: SafeReservation[];
   listing: SafeListing & {
     user: SafeUser;
   };
@@ -73,8 +72,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
     .then(() => {
       toast.success("Listing reserved!");
       setDateRange(initialDateRange);
-      // Redirect to /trips
-      router.refresh();
+      router.push("/trips");
     })
     .catch(() => {
       toast.error("Something went wrong.")

@@ -3,6 +3,7 @@
 import { AiOutlineMenu } from "react-icons/ai";
 import Avatar from "../Avatar";
 import { useCallback, useState } from "react";
+import { useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
 import MenuItem from "./MenuItem";
 
@@ -16,8 +17,9 @@ interface UserMenuProps {
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
+  const router = useRouter();
   const registerModal = useRegisterModal();
-  const loginModal = useLoginModal()
+  const loginModal = useLoginModal();
   const rentModal = useRentModal();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -31,9 +33,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
       return loginModal.onOpen();
     }
 
-    // Open Rent Modal
     rentModal.onOpen();
-  }, [currentUser, loginModal]);
+  }, [currentUser, loginModal, rentModal]);
 
   return (
     <div className="relative">
@@ -99,7 +100,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             {currentUser ? (
               <>
                 <MenuItem
-                  onClick={() => {}}
+                  onClick={() => router.push("/trips")}
                   label="My trips"
                 />
                 <MenuItem
@@ -107,7 +108,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                   label="My favorites"
                 />
                 <MenuItem
-                  onClick={() => {}}
+                  onClick={() => router.push("/reservations")}
                   label="My reservations"
                 />
                 <MenuItem

@@ -70,9 +70,11 @@ const Modal: React.FC<ModalProps> = ({
     <>
       <div
         onClick={e => {
-        if (e.target === e.currentTarget) {
-          handleClose();
-        }
+          console.log(e.target);
+          console.log(e.currentTarget);
+          if (e.target === e.currentTarget) {
+            handleClose();
+          }
         }}
         className="
           flex
