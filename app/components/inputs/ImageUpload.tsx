@@ -33,9 +33,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       {({ open }) => {
         return (
           <div
-            onClick={() => {
-              if (open) open()
-            }}
+            onClick={() => open?.()}
             className="
               relative
               cursor-pointer
@@ -73,8 +71,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
         )
       }}
     </CldUploadWidget>
-
-
   );
 }
 

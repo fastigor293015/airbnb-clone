@@ -12,77 +12,77 @@ export interface IListingsParams {
 }
 
 export default async function getListings(
-  params: IListingsParams
+  // params: IListingsParams
 ) {
   try {
-    const {
-      userId,
-      guestCount,
-      roomCount,
-      bathroomCount,
-      startDate,
-      endDate,
-      locationValue,
-      category,
-    } = params;
+    // const {
+    //   userId,
+    //   guestCount,
+    //   roomCount,
+    //   bathroomCount,
+    //   startDate,
+    //   endDate,
+    //   locationValue,
+    //   category,
+    // } = params;
 
-    let query: any = {};
+    // let query: any = {};
 
-    if (userId) {
-      query.userId = userId;
-    };
+    // if (userId) {
+    //   query.userId = userId;
+    // };
 
-    if (category) {
-      query.category = category;
-    };
+    // if (category) {
+    //   query.category = category;
+    // };
 
-    if (guestCount) {
-      query.guestCount = {
-        // Greater than or equal (>=)
-        gte: +guestCount,
-      };
-    };
+    // if (guestCount) {
+    //   query.guestCount = {
+    //     // Greater than or equal (>=)
+    //     gte: +guestCount,
+    //   };
+    // };
 
-    if (roomCount) {
-      query.roomCount = {
-        // Greater than or equal (>=)
-        gte: +roomCount,
-      };
-    };
+    // if (roomCount) {
+    //   query.roomCount = {
+    //     // Greater than or equal (>=)
+    //     gte: +roomCount,
+    //   };
+    // };
 
-    if (bathroomCount) {
-      query.bathroomCount = {
-        // Greater than or equal (>=)
-        gte: +bathroomCount,
-      };
-    };
+    // if (bathroomCount) {
+    //   query.bathroomCount = {
+    //     // Greater than or equal (>=)
+    //     gte: +bathroomCount,
+    //   };
+    // };
 
-    if (locationValue) {
-      query.locationValue = locationValue;
-    };
+    // if (locationValue) {
+    //   query.locationValue = locationValue;
+    // };
 
-    // Если есть хотя бы один забронированный день, убираем объявление из списка
-    if (startDate && endDate) {
-      query.NOT = {
-        reservations: {
-          some: {
-            OR: [
-              {
-                endDate: { gte: startDate },
-                startDate: { lte: startDate },
-              },
-              {
-                startDate: { lte: endDate },
-                endDate: { gte: endDate },
-              }
-            ]
-          }
-        }
-      }
-    }
+    // // Если есть хотя бы один забронированный день, убираем объявление из списка
+    // if (startDate && endDate) {
+    //   query.NOT = {
+    //     reservations: {
+    //       some: {
+    //         OR: [
+    //           {
+    //             endDate: { gte: startDate },
+    //             startDate: { lte: startDate },
+    //           },
+    //           {
+    //             startDate: { lte: endDate },
+    //             endDate: { gte: endDate },
+    //           }
+    //         ]
+    //       }
+    //     }
+    //   }
+    // }
 
     const listings = await prisma.listing.findMany({
-      where: query,
+      // where: query,
       orderBy: {
         createdAt: "desc",
       }
