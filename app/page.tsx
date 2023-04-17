@@ -6,12 +6,13 @@ import EmptyState from "./components/EmptyState";
 import ListingCard from "./components/listings/ListingCard";
 
 interface HomeProps {
-  searchParams: IListingsParams;
+  params?: string;
+  searchParams?: IListingsParams;
 }
 
 export const dynamic = "force-dynamic";
 
-const Home = async ({ searchParams }: HomeProps) => {
+const Home = async ({ params, searchParams = {} }: HomeProps) => {
   const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
 
